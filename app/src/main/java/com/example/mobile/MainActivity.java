@@ -7,7 +7,11 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
+import android.graphics.drawable.BitmapDrawable;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
@@ -16,14 +20,21 @@ import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CameraMetadata;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.params.StreamConfigurationMap;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Size;
 import android.view.Surface;
 import android.view.TextureView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private TextureView mTextureView;
@@ -32,6 +43,39 @@ public class MainActivity extends AppCompatActivity {
     private Size mPreviewSize;
     private CameraCaptureSession mCameraSession;
     private CaptureRequest.Builder mCaptureRequestBuilder;
+    private ProgressBar progressBar;
+    Button takePhoto;
+    final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+    ImageView imageView;
+
+    /**
+     * Camera state: Showing camera preview.
+     */
+    private static final int STATE_PREVIEW = 0;
+
+    /**
+     * Camera state: Waiting for the focus to be locked.
+     */
+    private static final int STATE_WAITING_LOCK = 1;
+
+    /**
+     * Camera state: Waiting for the exposure to be precapture state.
+     */
+    private static final int STATE_WAITING_PRECAPTURE = 2;
+
+    /**
+     * Camera state: Waiting for the exposure state to be something other than precapture.
+     */
+    private static final int STATE_WAITING_NON_PRECAPTURE = 3;
+
+    /**
+     * Camera state: Picture was taken.
+     */
+    private static final int STATE_PICTURE_TAKEN = 4;
+
+    private int mState = STATE_PREVIEW;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +85,17 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
             return;
         }
+        progressBar = (ProgressBar) findViewById(R.id.progress);
+        takePhoto = (Button)findViewById(R.id.button);
+        imageView = (ImageView)findViewById(R.id.imageView);
         initTextureView();
+
+        takePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                takePicture();
+            }
+        });
 
     }
 
@@ -167,5 +221,19 @@ public class MainActivity extends AppCompatActivity {
         } else {
             openCamera();
         }
+    }
+
+    private void takePicture() {
+        lockFocus();
+    }
+
+    private void lockFocus() {
+        mTextureView.setEnabled(false);
+        progressBar.setVisibility(View.VISIBLE);
+        mTextureView.getBitmap().compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
+        byte[] b = byteArrayOutputStream.toByteArray();
+        Bitmap bit = BitmapFactory.decodeByteArray( b , 0 , b.length);
+        imageView.setImageBitmap(bit);
+        imageView.setVisibility(View.VISIBLE);
     }
 }
