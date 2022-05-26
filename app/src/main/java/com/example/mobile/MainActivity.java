@@ -230,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void lockFocus() {
-        mTextureView.setEnabled(false);
+        mTextureView.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
         mTextureView.getBitmap().compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
         byte[] b = byteArrayOutputStream.toByteArray();

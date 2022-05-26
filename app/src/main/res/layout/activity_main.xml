@@ -16,8 +16,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="419dp"
-        android:layout_height="739dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-8dp"
         tools:srcCompat="@tools:sample/avatars"
