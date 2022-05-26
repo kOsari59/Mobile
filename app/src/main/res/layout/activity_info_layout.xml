@@ -7,39 +7,40 @@
     tools:context=".InfoLayout"
     android:orientation="vertical"
     android:id="@+id/Sub_Layout">
+
     <ImageView
+        android:id="@+id/Sub_iv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/Sub_iv"/>
+        android:layout_weight="3" />
+
     <FrameLayout
+        android:id="@+id/fm_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/Sub_FrameLayout" >
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/Sub_innerLayout1"
-            />
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/Sub_innerLayout2"
-            />
-    </FrameLayout>
+        android:layout_weight="15" />
 
     <LinearLayout
+        android:id="@+id/Sub_ButtonLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/Sub_ButtonLayout"
-        android:orientation="horizontal" >
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/Sub_alBtn"/>
+            android:id="@+id/Sub_alBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="모든 알러지" />
+
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/Sub_StarBtn"/>
+            android:id="@+id/Sub_StarBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="관심 알러지" />
 
     </LinearLayout>
 

@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         progressBar = (ProgressBar) findViewById(R.id.progress);
-        takePhoto = (Button)findViewById(R.id.button);
+        takePhoto = (Button)findViewById(R.id.btn_camera);
         imageView = (ImageView)findViewById(R.id.imageView);
         initTextureView();
 
