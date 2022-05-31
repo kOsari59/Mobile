@@ -14,24 +14,11 @@
         android:padding="10dp"
         android:text="관심 알러지" />
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/et_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/et_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/btn_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
-
-    </LinearLayout>
+        android:inputType="text" />
 
     <ListView
         android:id="@+id/listview"
