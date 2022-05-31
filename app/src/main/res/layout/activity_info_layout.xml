@@ -11,13 +11,13 @@
     <ImageView
         android:id="@+id/Sub_iv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_weight="3" />
 
     <FrameLayout
         android:id="@+id/fm_info"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_weight="15" />
 
     <LinearLayout
