@@ -29,7 +29,9 @@ import java.util.List;
 
 public class SettingActivity extends AppCompatActivity {
     List<AllergyItem> list;
-    ArrayList<AllergyItem> arraylist;
+    //데이터 저장
+    public ArrayList<AllergyItem> arraylist;
+
     ListView listView;
     ListViewAdapter adapter;
     EditText et_search;
@@ -51,25 +53,7 @@ public class SettingActivity extends AppCompatActivity {
 
         adapter = new ListViewAdapter(arraylist);
 
-        /*adapter.addItem(new AllergyItem("메밀 알러지",false));
-        adapter.addItem(new AllergyItem("밀 알러지",false));
-        adapter.addItem(new AllergyItem("대두 알러지",false));
-        adapter.addItem(new AllergyItem("호두 알러지",false));
-        adapter.addItem(new AllergyItem("땅콩 알러지",false));
-        adapter.addItem(new AllergyItem("복숭아 알러지",false));
-        adapter.addItem(new AllergyItem("토마토 알러지",false));
-        adapter.addItem(new AllergyItem("돼지고기 알러지",false));
-        adapter.addItem(new AllergyItem("계란 알러지",false));
-        adapter.addItem(new AllergyItem("우유 알러지",false));
-        adapter.addItem(new AllergyItem("닭고기 알러지",false));
-        adapter.addItem(new AllergyItem("쇠고기 알러지",false));
-        adapter.addItem(new AllergyItem("새우 알러지",false));
-        adapter.addItem(new AllergyItem("고등어 알러지",false));
-        adapter.addItem(new AllergyItem("홍합 알러지",false));
-        adapter.addItem(new AllergyItem("굴 알러지",false));
-        adapter.addItem(new AllergyItem("조개류 알러지",false));
-        adapter.addItem(new AllergyItem("게 알러지",false));
-        adapter.addItem(new AllergyItem("아황산 포함식품 알러지",false));*/
+
 
         listView.setAdapter(adapter);
 
@@ -87,7 +71,6 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 String text = et_search.getText().toString();
-                Log.d("시발", text);
                 search(text);
             }
         });

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class ListViewAdapter extends BaseAdapter {
 
-    ArrayList<AllergyItem> items;
+    public ArrayList<AllergyItem> items;
 
     public ListViewAdapter(ArrayList<AllergyItem> items) {
         this.items=items;
@@ -61,8 +61,29 @@ public class ListViewAdapter extends BaseAdapter {
 
         tv_name.setText(aItem.getName());
 
-        chip.setImageResource(android.R.drawable.star_off);
+        for(int i=0;i<getCount();i++){
 
+        }
+
+        if(aItem.check){
+            chip.setImageResource(android.R.drawable.star_big_on);
+        }else {
+            chip.setImageResource(android.R.drawable.star_big_off);
+        }
+
+        chip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(aItem.check){
+                    aItem.check=false;
+                    chip.setImageResource(android.R.drawable.star_big_off);
+                }
+                else{
+                    aItem.check=true;
+                    chip.setImageResource(android.R.drawable.star_big_on);
+                }
+            }
+        });
         Log.d(TAG, "getView() - [ "+position+" ] "+aItem.getName());
 
         //각 아이템 선택 event
