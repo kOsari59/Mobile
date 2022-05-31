@@ -30,6 +30,7 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private CameraCaptureSession mCameraSession;
     private CaptureRequest.Builder mCaptureRequestBuilder;
     private ProgressBar progressBar;
-    Button takePhoto,btn_setting;
+    ImageButton takePhoto,btn_setting;
     final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
     ImageView imageView;
 
@@ -88,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         progressBar = (ProgressBar) findViewById(R.id.progress);
-        takePhoto = (Button)findViewById(R.id.btn_camera);
-        btn_setting = (Button) findViewById(R.id.btn_setting);
+        takePhoto = (ImageButton)findViewById(R.id.btn_camera);
+        btn_setting = (ImageButton) findViewById(R.id.btn_setting);
         imageView = (ImageView)findViewById(R.id.imageView);
         initTextureView();
 

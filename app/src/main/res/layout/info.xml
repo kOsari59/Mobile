@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,29 +11,41 @@
         android:gravity="center">
 
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:id="@+id/imageView"
-            android:src="@drawable/api50" />
+            android:padding="10dp"
+            android:src="@drawable/pork" />
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:textSize="20dp"
-            android:text="설명"/>
+            android:text="돼지고기 알레르기"
+            android:textSize="24dp" />
+
         <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/api50"
-            android:id="@+id/starBtn"/>
+            android:id="@+id/starBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@android:drawable/star_big_off" />
     </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="10"
         android:layout_margin="20dp"
-        android:background="@color/black"
-        />
+        android:layout_weight="10"
+        android:background="@color/white"
+        android:text=" 증상 :\n1. 벌겋게 발진이 생기거나 두드러기가 납니다. \n2. 기침가 나옵니다.\n3. 구토증세, 설사, 복부팽만감.\n4. 기침이 멈추지 않거나 심할 경우 호흡곤란 상태에 이릅니다.\n"
+        android:textColor="@color/black" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="종료"
+        android:id="@+id/btnEnd"/>
 
 </LinearLayout>

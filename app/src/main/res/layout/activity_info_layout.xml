@@ -2,17 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Sub_Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InfoLayout"
     android:orientation="vertical"
-    android:id="@+id/Sub_Layout">
+    tools:context=".InfoLayout">
 
     <ImageView
         android:id="@+id/Sub_iv"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_weight="3" />
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/img" />
 
     <FrameLayout
         android:id="@+id/fm_info"
