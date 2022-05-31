@@ -31,7 +31,7 @@ public class AllFragment extends Fragment {
             public void onClick(View v) {
 
                 dialogView = getLayoutInflater().inflate(R.layout.info,null);
-                AlertDialog mDialog = (AlertDialog) new Dialog(v.getContext());
+                Dialog mDialog = new Dialog(v.getContext());
                 mDialog.setTitle("상세 정보");
                 mDialog.setContentView(dialogView);
                 mDialog.setCancelable(true);
