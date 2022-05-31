@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private CameraCaptureSession mCameraSession;
     private CaptureRequest.Builder mCaptureRequestBuilder;
     private ProgressBar progressBar;
-    Button takePhoto;
+    Button takePhoto,btn_setting;
     final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
     ImageView imageView;
 
@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         }
         progressBar = (ProgressBar) findViewById(R.id.progress);
         takePhoto = (Button)findViewById(R.id.btn_camera);
+        btn_setting = (Button) findViewById(R.id.btn_setting);
         imageView = (ImageView)findViewById(R.id.imageView);
         initTextureView();
 
@@ -96,6 +97,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 takePicture();
+            }
+        });
+
+        btn_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),SettingActivity.class);
+                startActivity(intent);
             }
         });
 
