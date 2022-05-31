@@ -2,26 +2,29 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Main_Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:id="@+id/Main_Layout"
-    >
+    tools:context=".MainActivity">
 
 
     <TextureView
         android:id="@+id/textureView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="invisible"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-8dp"
-        tools:srcCompat="@tools:sample/avatars"
-        android:visibility="invisible"/>
+        tools:srcCompat="@tools:sample/avatars" />
 
     <ProgressBar
         android:id="@+id/progress"
@@ -37,10 +40,12 @@
 
     <ImageButton
         android:id="@+id/btn_camera"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:text="카메라"
-        android:src="@drawable/img"
+        android:layout_width="125dp"
+        android:layout_height="100dp"
+        android:adjustViewBounds="true"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/camera"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
@@ -50,15 +55,17 @@
 
     <ImageButton
         android:id="@+id/btn_setting"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:text="setting"
-        android:src="@drawable/setting"
+        android:layout_width="106dp"
+        android:layout_height="114dp"
+        android:adjustViewBounds="true"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/setting_settings_icon_183789"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.908"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.038" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

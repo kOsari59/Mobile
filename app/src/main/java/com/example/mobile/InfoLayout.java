@@ -37,7 +37,6 @@ public class InfoLayout extends AppCompatActivity {
         Sub_StarBtn = (Button) findViewById(R.id.Sub_StarBtn);
         Sub_iv = (ImageView) findViewById(R.id.Sub_iv);
 
-        Sub_iv.setImageResource(R.drawable.api50);
 
         manager.beginTransaction().replace(R.id.fm_info, af).commit();
 

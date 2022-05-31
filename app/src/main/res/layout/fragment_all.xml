@@ -23,20 +23,26 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp">
 
-                <Button
+                <ImageButton
                     android:id="@+id/button1"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/pork"
                     android:text="Button" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/button2"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/shrimp"
                     android:text="Button" />
             </TableRow>
 
@@ -45,20 +51,26 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp">
 
-                <Button
+                <ImageButton
                     android:id="@+id/button3"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/beef"
                     android:text="Button" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/button4"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/egg"
                     android:text="Button" />
             </TableRow>
 
@@ -67,20 +79,26 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp">
 
-                <Button
+                <ImageButton
                     android:id="@+id/button5"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/milk"
                     android:text="Button" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/button6"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/tomato"
                     android:text="Button" />
             </TableRow>
 
@@ -89,20 +107,54 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp">
 
-                <Button
+                <ImageButton
                     android:id="@+id/button7"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/crab"
                     android:text="Button" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/button8"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/buckwheat"
+                    android:text="Button" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp">
+
+                <ImageButton
+                    android:id="@+id/button9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/soybean"
+                    android:text="Button" />
+
+                <ImageButton
+                    android:id="@+id/button10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/grain"
                     android:text="Button" />
             </TableRow>
 
