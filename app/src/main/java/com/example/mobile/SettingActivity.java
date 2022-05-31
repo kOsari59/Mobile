@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Switch;
@@ -81,10 +82,12 @@ public class SettingActivity extends AppCompatActivity {
 
 
             TextView tv_name = (TextView) view.findViewById(R.id.tv_name);
-            Switch chip = (Switch) view.findViewById(R.id.swich_star);
+            ImageButton chip = (ImageButton) view.findViewById(R.id.ib_star);
 
             tv_name.setText(aItem.getName());
-            chip.setChecked(aItem.getCheck());
+
+            chip.setImageResource(android.R.drawable.star_off);
+
             Log.d(TAG, "getView() - [ "+position+" ] "+aItem.getName());
 
             //각 아이템 선택 event
