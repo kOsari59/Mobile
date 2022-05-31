@@ -2,6 +2,8 @@ package com.example.mobile;
 
 import static android.content.ContentValues.TAG;
 
+import static com.example.mobile.StartProgram.*;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -28,12 +30,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SettingActivity extends AppCompatActivity {
-    List<AllergyItem> list;
-    //데이터 저장
-    public ArrayList<AllergyItem> arraylist;
+
 
     ListView listView;
-    ListViewAdapter adapter;
     EditText et_search;
 
     @Override
@@ -43,17 +42,6 @@ public class SettingActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listview);
         et_search = (EditText) findViewById(R.id.et_search);
-
-        list = new ArrayList<AllergyItem>();
-
-        settingList();
-
-        arraylist = new ArrayList<AllergyItem>();
-        arraylist.addAll(list);
-
-        adapter = new ListViewAdapter(arraylist);
-
-
 
         listView.setAdapter(adapter);
 

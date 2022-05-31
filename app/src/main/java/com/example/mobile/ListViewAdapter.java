@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class ListViewAdapter extends BaseAdapter {
 
-    public ArrayList<AllergyItem> items;
+    public ArrayList<AllergyItem> items= new ArrayList<>();
 
     public ListViewAdapter(ArrayList<AllergyItem> items) {
         this.items=items;
@@ -84,7 +84,6 @@ public class ListViewAdapter extends BaseAdapter {
                 }
             }
         });
-        Log.d(TAG, "getView() - [ "+position+" ] "+aItem.getName());
 
         //각 아이템 선택 event
         view.setOnClickListener(new View.OnClickListener() {

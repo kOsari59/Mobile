@@ -19,10 +19,13 @@
             android:name=".SettingActivity"
             android:exported="false" />
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".InfoLayout"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".StartProgram"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
