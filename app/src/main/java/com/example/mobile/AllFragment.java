@@ -1,5 +1,7 @@
 package com.example.mobile;
 
+import static com.example.mobile.StartProgram.adapter;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -17,7 +19,9 @@ import android.widget.Toast;
 
 public class AllFragment extends Fragment {
     View dialogView;
-    boolean flag = true;
+    AllergyItem item = (AllergyItem)adapter.getItem(7);
+    boolean flag = item.check;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -29,6 +33,12 @@ public class AllFragment extends Fragment {
         dialogView = getLayoutInflater().inflate(R.layout.info,null);
         Button btend = dialogView.findViewById(R.id.btnEnd);
         ImageButton btstart = dialogView.findViewById(R.id.starBtn);
+
+        if(item.check){
+            btstart.setImageResource(android.R.drawable.star_big_on);
+        }else{
+            btstart.setImageResource(android.R.drawable.star_big_off);
+        }
 
         Dialog mDialog = new Dialog(this.getContext());
         mDialog.setTitle("상세 정보");
@@ -42,12 +52,12 @@ public class AllFragment extends Fragment {
         btstart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(flag){
-                    flag=false;
-                    btstart.setImageResource(android.R.drawable.star_big_on);
-                }else{
-                    flag=true;
+                if(item.check){
+                    item.check=false;
                     btstart.setImageResource(android.R.drawable.star_big_off);
+                }else{
+                    item.check=true;
+                    btstart.setImageResource(android.R.drawable.star_big_on);
                 }
             }
         });

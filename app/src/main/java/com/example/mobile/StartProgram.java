@@ -35,28 +35,6 @@ public class StartProgram extends AppCompatActivity {
         adapter= new ListViewAdapter(arraylist);
 
 
-        /*adapter.addItem(new AllergyItem("메밀",false));
-        adapter.addItem(new AllergyItem("밀",false));
-        adapter.addItem(new AllergyItem("대두",false));
-        adapter.addItem(new AllergyItem("호두",false));
-        adapter.addItem(new AllergyItem("땅콩",false));
-        adapter.addItem(new AllergyItem("복숭아",false));
-        adapter.addItem(new AllergyItem("토마토",false));
-        adapter.addItem(new AllergyItem("돼지고기",false));
-        adapter.addItem(new AllergyItem("계란",false));
-        adapter.addItem(new AllergyItem("우유",false));
-        adapter.addItem(new AllergyItem("닭고기",false));
-        adapter.addItem(new AllergyItem("쇠고기",false));
-        adapter.addItem(new AllergyItem("새우",false));
-        adapter.addItem(new AllergyItem("고등어",false));
-        adapter.addItem(new AllergyItem("홍합",false));
-        adapter.addItem(new AllergyItem("굴",false));
-        adapter.addItem(new AllergyItem("조개류",false));
-        adapter.addItem(new AllergyItem("게",false));
-        adapter.addItem(new AllergyItem("아황산 포함식품",false));*/
-
-
-
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 
