@@ -31,6 +31,17 @@ public class ListViewAdapter extends BaseAdapter {
         items.add(item);
     }
 
+    public ArrayList<String> getCheckTrue(){
+        ArrayList<String> a= new ArrayList<>();
+
+        for(int i=0; i<items.size();i++){
+            if(items.get(i).check){
+                a.add(items.get(i).name);
+            }
+        }
+        return a;
+    }
+
     @Override
     public Object getItem(int i) {
         return items.get(i);
