@@ -13,10 +13,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-
+/*
+    리스트뷰 구현을 위해 사용되는 어뎁터
+*/
 public class ListViewAdapter extends BaseAdapter {
 
-    public ArrayList<AllergyItem> items= new ArrayList<>();
+    public ArrayList<AllergyItem> items;
 
     public ListViewAdapter(ArrayList<AllergyItem> items) {
         this.items=items;
@@ -31,16 +33,6 @@ public class ListViewAdapter extends BaseAdapter {
         items.add(item);
     }
 
-    public ArrayList<String> getCheckTrue(){
-        ArrayList<String> a= new ArrayList<>();
-
-        for(int i=0; i<items.size();i++){
-            if(items.get(i).check){
-                a.add(items.get(i).name);
-            }
-        }
-        return a;
-    }
 
     @Override
     public Object getItem(int i) {
@@ -66,26 +58,26 @@ public class ListViewAdapter extends BaseAdapter {
             v = (View) view;
         }
 
-
+        //리스트뷰 하나하나 칸의 있는 위젯 변수 (알러지 이름 텍스트뷰, 즐겨찾기 버튼)
         TextView tv_name = (TextView) view.findViewById(R.id.tv_name);
         ImageButton chip = (ImageButton) view.findViewById(R.id.ib_star);
 
+        //알러지 이름 입력
         tv_name.setText(aItem.getName());
 
-        for(int i=0;i<getCount();i++){
-
-        }
-
+        //즐겨찾기 버튼
         if(aItem.check){
             chip.setImageResource(android.R.drawable.star_big_on);
         }else {
             chip.setImageResource(android.R.drawable.star_big_off);
         }
-
+        //즐겨찾기 버튼에 클릭이벤트 리스너 넣음
         chip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(aItem.check){
+                //만약 즐겨찾기 변수가 참이면 거짓으로 바꾸고 꺼진 별 이미지 삽입
+                //거짓이면 참으로 바꾸고 켜진 별 이미지 삽입
+                if(aItem.getCheck()){
                     aItem.check=false;
                     chip.setImageResource(android.R.drawable.star_big_off);
                 }
@@ -100,7 +92,7 @@ public class ListViewAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, aItem.getName()+" 입니당! ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, aItem.getName(), Toast.LENGTH_SHORT).show();
             }
         });
 

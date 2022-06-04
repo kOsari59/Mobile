@@ -34,7 +34,7 @@ public class AllFragment extends Fragment {
         Button btend = dialogView.findViewById(R.id.btnEnd); //버튼 생성
         ImageButton btstart = dialogView.findViewById(R.id.starBtn); //이미지 버튼 생성
         
-        // 생성하지마자 버튼을 활성화 할지 않할지 결정할 코드
+        // 생성하지마자 버튼을 활성화 할지 안할지 결정할 코드
         if(item.check){
             btstart.setImageResource(android.R.drawable.star_big_on); // 버튼 클릭시 즐겨찾기 버튼 활성화
         }else{

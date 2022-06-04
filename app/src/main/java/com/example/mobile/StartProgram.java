@@ -9,14 +9,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/*
+어플리케이션이 처음 실행되었을 떄, 실행되는 자바코드
+어플에서 사용될 데이터를 초기화한다.
+*/
 public class StartProgram extends AppCompatActivity {
 
-
+    //activity_setting (관심알러지 설정화면)에 리스트뷰를 설정하기 위해 사용되는 어뎁터
     public static ListViewAdapter adapter;
 
+    //activity_setting (관심알러지 설정화면)에 리스트뷰 검색 기능을 구현하기 위해 배열을 2개 사용
     public static List<AllergyItem> list;
-    //데이터 저장
     public static ArrayList<AllergyItem> arraylist;
 
 
@@ -24,22 +27,26 @@ public class StartProgram extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         list = new ArrayList<AllergyItem>();
+        arraylist = new ArrayList<AllergyItem>();
 
+        //리스트에 데이터를 설정하는 함수
         settingList();
 
-        arraylist = new ArrayList<AllergyItem>();
         arraylist.addAll(list);
 
+        //모든 데이터값을 넣고 어뎁터 객체를 생성
         adapter= new ListViewAdapter(arraylist);
 
-
+        //MainActivity(메인화면) 액티비티를 실행
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 
     }
 
+    /*
+        리스트에 데이터를 설정하는 함수
+     */
     private void settingList(){
 
         list.add(new AllergyItem("메밀",false));

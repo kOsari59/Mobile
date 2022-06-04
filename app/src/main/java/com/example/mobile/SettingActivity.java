@@ -31,7 +31,7 @@ import java.util.List;
 
 public class SettingActivity extends AppCompatActivity {
 
-
+    //레이아웃의 리스트뷰와 검색에 사용될 에딧텍스트 변수
     ListView listView;
     EditText et_search;
 
@@ -40,11 +40,14 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
+        //각각 위젯과 매핑
         listView = (ListView) findViewById(R.id.listview);
         et_search = (EditText) findViewById(R.id.et_search);
 
+        //StartProgram에서 생성한 어뎁터 객체를 리스트뷰에 설정정
         listView.setAdapter(adapter);
 
+        //에딧텍스트에 텍스트변경 리스너를 추가
         et_search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -56,14 +59,18 @@ public class SettingActivity extends AppCompatActivity {
 
             }
 
+            //에딧 텍스트의 텍스트값이 변경된 후에, 해당 텍스트 값을 가지고 리스트뷰 검색 메소드 실행
             @Override
             public void afterTextChanged(Editable editable) {
+
                 String text = et_search.getText().toString();
                 search(text);
             }
         });
     }
-
+    /*
+        리스트뷰 검색하는 메소드
+    */
     public void search(String charText) {
 
         // 문자 입력시마다 리스트를 지우고 새로 뿌려준다.
@@ -89,30 +96,6 @@ public class SettingActivity extends AppCompatActivity {
         }
         // 리스트 데이터가 변경되었으므로 아답터를 갱신하여 검색된 데이터를 화면에 보여준다.
         adapter.notifyDataSetChanged();
-    }
-
-    private void settingList(){
-
-        list.add(new AllergyItem("메밀",false));
-        list.add(new AllergyItem("밀",false));
-        list.add(new AllergyItem("대두",false));
-        list.add(new AllergyItem("호두",false));
-        list.add(new AllergyItem("땅콩",false));
-        list.add(new AllergyItem("복숭아",false));
-        list.add(new AllergyItem("토마토",false));
-        list.add(new AllergyItem("돼지고기",false));
-        list.add(new AllergyItem("계란",false));
-        list.add(new AllergyItem("우유",false));
-        list.add(new AllergyItem("닭고기",false));
-        list.add(new AllergyItem("쇠고기",false));
-        list.add(new AllergyItem("새우",false));
-        list.add(new AllergyItem("고등어",false));
-        list.add(new AllergyItem("홍합",false));
-        list.add(new AllergyItem("굴",false));
-        list.add(new AllergyItem("조개류",false));
-        list.add(new AllergyItem("게",false));
-        list.add(new AllergyItem("아황산 포함식품",false));
-
     }
 }
 
