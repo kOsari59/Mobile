@@ -84,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //권한 체크
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
             return;
@@ -94,13 +96,15 @@ public class MainActivity extends AppCompatActivity {
         imageView = (ImageView)findViewById(R.id.imageView);
         initTextureView();
 
+        //사진 찍기 버튼 눌르면 takePicture 실행
         takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 takePicture();
             }
         });
-
+        
+        //세팅 버튼 누르면 세팅창으로
         btn_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,7 +114,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
+    
+    //촬영 화면을 출력할 텍스처 뷰설정
     private void initTextureView() {
         mTextureView = (TextureView) findViewById(R.id.textureView);
         mTextureView.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
@@ -135,7 +140,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    
+    //텍스처 뷰에 카메라를 연결하기 위해 카메라 정보 접근
     private void openCamera() {
         CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
         try {
@@ -187,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    //접근한 카메라정보를 가지고 화면출력
     private void showCameraPreview() {
         try {
             SurfaceTexture texture = mTextureView.getSurfaceTexture();
@@ -238,7 +244,8 @@ public class MainActivity extends AppCompatActivity {
     private void takePicture() {
         lockFocus();
     }
-
+    
+    //촬영 버튼 클릭시 화면 멈춤
     private void lockFocus() {
         mTextureView.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);

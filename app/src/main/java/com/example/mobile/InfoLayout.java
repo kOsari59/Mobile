@@ -17,6 +17,8 @@ public class InfoLayout extends AppCompatActivity {
     ImageView Sub_iv;
     FragmentManager manager;
 
+
+    //뒤로가기 버튼 클릭시 메인화면으로 이동
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -29,6 +31,8 @@ public class InfoLayout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_layout);
 
+
+        //플레그먼트 메니저를 이용해 플레그먼트 변환
         manager = getSupportFragmentManager();
         af = new AllFragment();
         sf = new StarFragment();
@@ -37,9 +41,10 @@ public class InfoLayout extends AppCompatActivity {
         Sub_StarBtn = (Button) findViewById(R.id.Sub_StarBtn);
         Sub_iv = (ImageView) findViewById(R.id.Sub_iv);
 
-
+        // 처음 나오는 플레그먼트는 AllFragment를 사용
         manager.beginTransaction().replace(R.id.fm_info, af).commit();
 
+        // 모든 알러지 버튼을 클릭하면 AllFragment로 이동
         Sub_alBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,6 +52,7 @@ public class InfoLayout extends AppCompatActivity {
             }
         });
 
+        // 관심 알러지 버튼을 클릭하면 StarFragment로 이동
         Sub_StarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -5,11 +5,12 @@ public class AllergyItem {
     String name;
     boolean check;
 
+    //알러지 데이터가 저장될 구조
     public AllergyItem(String name, boolean check){
         this.name = name;
         this.check = check;
     }
-
+    //이름을 출력하고 설정
     public String getName() {
         return name;
     }
@@ -17,6 +18,8 @@ public class AllergyItem {
         this.name = name;
     }
 
+    
+    //선택 정보가 젖아되고 출력
     public boolean getCheck() {
         return check;
     }
