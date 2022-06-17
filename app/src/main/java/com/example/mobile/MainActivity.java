@@ -80,7 +80,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
+        finishAffinity(); // 해당 어플리케이션의 루트 액티비티를 종료시키는 것 입니다.
+        System.runFinalization(); // 현재 구동중인 쓰레드가 다 종료되면 종료시키는 것 입니다.
+        System.exit(0); // 현재의 액티비티를 종료시키는 것 입니다.
     }
 
 

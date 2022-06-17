@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 /*
-    리스트뷰 구현을 위해 사용되는 어뎁터
+    리스트뷰 구현을 위해 사용되는 어댑터
 */
 public class ListViewAdapter extends BaseAdapter {
 
