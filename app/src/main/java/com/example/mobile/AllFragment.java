@@ -28,7 +28,6 @@ public class AllFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View fragment = inflater.inflate(R.layout.fragment_all, container, false); //플레그먼트 뷰로 받아오기
-
         ImageButton btn = fragment.findViewById(R.id.button1); //플레그먼트에 버튼 설정
         dialogView = getLayoutInflater().inflate(R.layout.info,null); //다이어로그 생성
         Button btend = dialogView.findViewById(R.id.btnEnd); //버튼 생성

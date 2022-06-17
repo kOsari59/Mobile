@@ -10,9 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
-import android.graphics.drawable.BitmapDrawable;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
@@ -21,7 +19,6 @@ import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CameraMetadata;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.params.StreamConfigurationMap;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -29,7 +26,6 @@ import android.util.Size;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -47,12 +43,10 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.text.ParseException;
 import java.util.Arrays;
-import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class MainActivity extends AppCompatActivity {
-    String key = "mFIj1lR4NzqA7XXA2GytgmxQpgvDlWDF9v%2B1ibMLXcLA3162vS7Vs1Syx41SL%2F8iEngGhId7%2FKarPWBTneZv5w%3D%3D";
-    String prdlstNm = "신라면";
-    String code="";   //지역 코드
+    public final static Api a =  new Api();
     private TextureView mTextureView;
     private static final int REQUEST_CAMERA_PERMISSION = 1234;
     private CameraDevice mCamera;
@@ -60,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private CameraCaptureSession mCameraSession;
     private CaptureRequest.Builder mCaptureRequestBuilder;
     private ProgressBar progressBar;
-    ImageButton takePhoto,btn_setting;
+    ImageButton takePhoto, btn_setting;
     final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
     ImageView imageView;
 
@@ -110,9 +104,9 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         progressBar = (ProgressBar) findViewById(R.id.progress);
-        takePhoto = (ImageButton)findViewById(R.id.btn_camera);
+        takePhoto = (ImageButton) findViewById(R.id.btn_camera);
         btn_setting = (ImageButton) findViewById(R.id.btn_setting);
-        imageView = (ImageView)findViewById(R.id.imageView);
+        imageView = (ImageView) findViewById(R.id.imageView);
         initTextureView();
 
         //사진 찍기 버튼 눌르면 takePicture 실행
@@ -127,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         btn_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),SettingActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
                 startActivity(intent);
             }
         });
@@ -207,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
             }, null);
 
         } catch (CameraAccessException e) {
-            Log.d("ddd",e.toString());
+            Log.d("ddd", e.toString());
         }
 
     }
@@ -234,16 +228,16 @@ public class MainActivity extends AppCompatActivity {
                 public void onConfigureFailed(@NonNull CameraCaptureSession session) {
 
                 }
-            },null);
-        }catch (CameraAccessException e){
+            }, null);
+        } catch (CameraAccessException e) {
             Log.d("ddd", e.toString(), e);
         }
     }
 
-    private void updatePreview(){
+    private void updatePreview() {
         try {
-            mCameraSession.setRepeatingRequest(mCaptureRequestBuilder.build(),null,null);
-        }catch (Exception e){
+            mCameraSession.setRepeatingRequest(mCaptureRequestBuilder.build(), null, null);
+        } catch (Exception e) {
             Log.d("hell", e.toString());
         }
     }
@@ -261,63 +255,38 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void takePicture() {
-                lockFocus();
+        lockFocus();
+
     }
 
     //촬영 버튼 클릭시 화면 멈춤
     private void lockFocus() {
-        String al = "값이 없습니다";
         mTextureView.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
         mTextureView.getBitmap().compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
         byte[] b = byteArrayOutputStream.toByteArray();
-        Bitmap bit = BitmapFactory.decodeByteArray( b , 0 , b.length);
+        Bitmap bit = BitmapFactory.decodeByteArray(b, 0, b.length);
         imageView.setImageBitmap(bit);
         imageView.setVisibility(View.VISIBLE);
-        try {
-             al =  Api_loader();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+            new Thread(() -> {
+                try {
+                    a.Api_loader();
+                } catch (Exception e) {
+                    Log.d("오류",e.toString());
+                }
+            }).start();
         Handler handler = new Handler();
-        String finalAl = al;
         handler.postDelayed(new Runnable() {
             public void run() {
                 Intent intent = new Intent(getApplicationContext(), InfoLayout.class);
-                intent.putExtra("ai",finalAl);
+                intent.putExtra("ai", a.code);
                 startActivity(intent);
                 finish();
             }
         }, 2000);
 
-
     }
 
-    public String Api_loader() throws IOException, ParseException,Exception {
-        URL url;
-        BufferedReader br;
-        URLConnection conn;
-        JSONParser parser;
-        JSONArray jArr;
-        JSONObject jobj;
-        JSONObject jtest;
-        String result;
-        url = new URL("http://apis.data.go.kr/B553748/CertImgListService/getCertImgListService?serviceKey="+key+"&prdlstNm="+prdlstNm+"&returnType=json");
 
-        conn = url.openConnection(); // URLConnection 에 ULR을 추가
-        br = new BufferedReader(new InputStreamReader(conn.getInputStream())); //버퍼리더를 통해 URL을 br에 넣어준뒤
-        result = br.readLine().toString(); // result에 br을 string 형으로 바꾸어 대입
-        br.close(); //버퍼리더 꺼주기
-        //System.out.println(result); 결과 출력하고 싶으면 이렇게
-        JSONObject jsonObject = new JSONObject(result);
-        jArr = jsonObject.getJSONArray("list");
-        for(int i = 0 ; i < jArr.length(); i++) { //jArr의 사이즈 만큼 반복
-            jobj = (JSONObject) jArr.get(i);//지역이 일치하는지 비교
-            if(jobj.get("prdlstNm").equals("신라면 BLACK")) { //지역이 일치하는지 비교
-                code = (String)jobj.get("allergy"); //지역코드 대입
-                break;
-            }
-        }
-        return code;
-    }
 }

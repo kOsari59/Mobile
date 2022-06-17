@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class InfoLayout extends AppCompatActivity {
 
@@ -31,8 +32,9 @@ public class InfoLayout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_layout);
 
-
-
+        Intent intent = getIntent();
+        String ai = intent.getStringExtra("ai");
+        Toast.makeText(getApplicationContext(),ai,Toast.LENGTH_LONG).show();
         //플레그먼트 메니저를 이용해 플레그먼트 변환
         manager = getSupportFragmentManager();
         af = new AllFragment();
