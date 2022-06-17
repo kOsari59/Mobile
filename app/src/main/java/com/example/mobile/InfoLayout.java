@@ -32,6 +32,7 @@ public class InfoLayout extends AppCompatActivity {
         setContentView(R.layout.activity_info_layout);
 
 
+
         //플레그먼트 메니저를 이용해 플레그먼트 변환
         manager = getSupportFragmentManager();
         af = new AllFragment();
