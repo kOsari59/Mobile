@@ -15,7 +15,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:padding="10dp"
-            android:src="@drawable/pork" />
+            android:src="@drawable/pork"
+            />
 
         <TextView
             android:id="@+id/textView"

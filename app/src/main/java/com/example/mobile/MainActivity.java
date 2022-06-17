@@ -46,7 +46,7 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class MainActivity extends AppCompatActivity {
-    public final static Api a =  new Api();
+    public final static Api api =  new Api();
     private TextureView mTextureView;
     private static final int REQUEST_CAMERA_PERMISSION = 1234;
     private CameraDevice mCamera;
@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
 
             new Thread(() -> {
                 try {
-                    a.Api_loader();
+                    api.Api_loader();
                 } catch (Exception e) {
                     Log.d("오류",e.toString());
                 }
@@ -280,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             public void run() {
                 Intent intent = new Intent(getApplicationContext(), InfoLayout.class);
-                intent.putExtra("ai", a.code);
+                intent.putExtra("ai", api.code);
                 startActivity(intent);
                 finish();
             }

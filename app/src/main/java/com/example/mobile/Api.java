@@ -37,7 +37,7 @@ public class Api {
         jArr = jsonObject.getJSONArray("list");
         for (int i = 0; i < jArr.length(); i++) { //jArr의 사이즈 만큼 반복
             jobj = (JSONObject) jArr.get(i);//지역이 일치하는지 비교
-            if (jobj.get("prdlstNm").equals("신라면 BLACK")) { //지역이 일치하는지 비교
+            if (jobj.get("prdlstNm").equals(prdlstNm)) { //지역이 일치하는지 비교
                 code = (String) jobj.get("allergy"); //지역코드 대입
                 break;
             }

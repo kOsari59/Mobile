@@ -6,10 +6,25 @@
     android:background="@color/purple_500"
     android:orientation="vertical"
     tools:context=".AllFragment">
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/layoutid"
+            >
+
+        </TableLayout>
+
+    </ScrollView>
+
+    <!--주석
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white">
 
         <TableLayout
@@ -160,4 +175,5 @@
 
         </TableLayout>
     </ScrollView>
+    -->
 </LinearLayout>
