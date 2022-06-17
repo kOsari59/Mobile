@@ -74,6 +74,8 @@ public class AllFragment extends Fragment {
         ImageView iv = dialogView.findViewById(R.id.imageView);
         TextView tv = dialogView.findViewById(R.id.textView);
 
+        
+
         for(int i = 0 ; i<array.length;i++){
             int index = 0 ;
             buttons.add(new Button(getContext()));
