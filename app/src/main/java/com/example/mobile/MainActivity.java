@@ -78,6 +78,10 @@ public class MainActivity extends AppCompatActivity {
 
     private int mState = STATE_PREVIEW;
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 
 
     @Override

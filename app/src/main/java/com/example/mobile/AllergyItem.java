@@ -19,7 +19,7 @@ public class AllergyItem {
     }
 
     
-    //선택 정보가 젖아되고 출력
+    //선택 정보가 저장되고 출력
     public boolean getCheck() {
         return check;
     }
