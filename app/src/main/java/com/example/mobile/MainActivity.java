@@ -241,7 +241,8 @@ public class MainActivity extends AppCompatActivity {
             Log.d("hell", e.toString());
         }
     }
-
+    
+    //화면갱신
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CAMERA_PERMISSION) {
@@ -254,6 +255,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //사진 촬영
     private void takePicture() {
         lockFocus();
 
@@ -269,6 +271,7 @@ public class MainActivity extends AppCompatActivity {
         imageView.setImageBitmap(bit);
         imageView.setVisibility(View.VISIBLE);
 
+        //네트워크 사용시 쓰레드 처리 않해주면 오류 발생 따라서 api에 네트워크 부분 오류 발생으로 쓰레드 처리해줌
             new Thread(() -> {
                 try {
                     api.Api_loader();
@@ -276,6 +279,8 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("오류",e.toString());
                 }
             }).start();
+            
+            //헨들러를 이용해서일정 시간 후에 화면 이동
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
