@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //촬영 화면을 출력할 텍스처 뷰설정
+    //촬영 화면을 출력할 텍스처 뷰 설정
     private void initTextureView() {
         mTextureView = (TextureView) findViewById(R.id.textureView);
         mTextureView.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {

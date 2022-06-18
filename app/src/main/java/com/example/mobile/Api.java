@@ -11,9 +11,12 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.text.ParseException;
 
+//공공데이터 api 이용해서 관련 식품 데이터 모두 받고
+//그 데이터 중에서 알러지 키가 있는 식품 데이터를 받음.
+//code에 알러지 정보가 저장됨
 public class Api {
     String key = "mFIj1lR4NzqA7XXA2GytgmxQpgvDlWDF9v%2B1ibMLXcLA3162vS7Vs1Syx41SL%2F8iEngGhId7%2FKarPWBTneZv5w%3D%3D";
-    String prdlstNm = "신라면";
+    String prdlstNm = "신라면"; //식품명 ;; 실제 코드에서는 신라면 대신 사진 검색으로 받은 제품명을 사용
 
     public String code = "알러지가 없습니다.";   //지역 코드
 
@@ -26,19 +29,22 @@ public class Api {
         JSONObject jobj;
         JSONObject jtest;
         String result;
+
+        //공공api에서 json형식 받아옴
         url = new URL("http://apis.data.go.kr/B553748/CertImgListService/getCertImgListService?serviceKey=" + key + "&prdlstNm=" + prdlstNm + "&returnType=json");
 
         conn = url.openConnection(); // URLConnection 에 ULR을 추가
         br = new BufferedReader(new InputStreamReader(conn.getInputStream())); //버퍼리더를 통해 URL을 br에 넣어준뒤
         result = br.readLine().toString(); // result에 br을 string 형으로 바꾸어 대입
         br.close(); //버퍼리더 꺼주기
-        //System.out.println(result); 결과 출력하고 싶으면 이렇게
+
+        //파싱
         JSONObject jsonObject = new JSONObject(result);
         jArr = jsonObject.getJSONArray("list");
-        for (int i = 0; i < jArr.length(); i++) { //jArr의 사이즈 만큼 반복
-            jobj = (JSONObject) jArr.get(i);//지역이 일치하는지 비교
-            if (jobj.get("prdlstNm").equals(prdlstNm)) { //지역이 일치하는지 비교
-                code = (String) jobj.get("allergy"); //지역코드 대입
+        for (int i = 0; i < jArr.length(); i++) {
+            jobj = (JSONObject) jArr.get(i);
+            if (jobj.get("prdlstNm").equals(prdlstNm)) {
+                code = (String) jobj.get("allergy");
                 break;
             }
         }

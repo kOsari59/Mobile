@@ -17,8 +17,6 @@ public class AllergyItem {
     public void setName(String name) {
         this.name = name;
     }
-
-    
     //선택 정보가 저장되고 출력
     public boolean getCheck() {
         return check;

@@ -32,8 +32,8 @@ import java.util.ArrayList;
 
 public class AllFragment extends Fragment {
     View dialogView;
-    AllergyItem item = (AllergyItem) adapter.getItem(7);
-    boolean flag = item.check;
+    //AllergyItem item = (AllergyItem) adapter.getItem(7);
+    boolean flag = false;
     int length = 0;
 
     @Override
@@ -124,25 +124,21 @@ public class AllFragment extends Fragment {
         layout.setBackgroundResource(R.drawable.border);
         fragment.invalidate();
 
-
-        // 생성하지마자 버튼을 활성화 할지 안할지 결정할 코드
-        if (item.check) {
-            btstart.setImageResource(android.R.drawable.star_big_on); // 버튼 클릭시 즐겨찾기 버튼 활성화
-        } else {
-            btstart.setImageResource(android.R.drawable.star_big_off); //버튼 클릭시 즐겨찾기 버튼 끄기
-        }
+        btstart.setImageResource(android.R.drawable.star_big_off); // 버튼 클릭시 즐겨찾기 버튼 활성화
 
 
         // 버튼 클릭시 즐겨찾기 버튼 설정
         btstart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (item.check) {
-                    item.check = false;
+                if (flag) {
+                    flag = false;
                     btstart.setImageResource(android.R.drawable.star_big_off);
+                    Toast.makeText(getContext(),tv.getText().toString()+"이(가) 관심 알러지에서 삭제되었습니다.",Toast.LENGTH_SHORT).show();
                 } else {
-                    item.check = true;
+                    flag = true;
                     btstart.setImageResource(android.R.drawable.star_big_on);
+                    Toast.makeText(getContext(),tv.getText().toString()+"이(가) 관심 알러지로 등록되었습니다.",Toast.LENGTH_SHORT).show();
                 }
             }
         });
