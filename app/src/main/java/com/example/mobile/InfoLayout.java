@@ -34,7 +34,7 @@ public class InfoLayout extends AppCompatActivity {
 
         Intent intent = getIntent();
         String ai = intent.getStringExtra("ai");
-        Toast.makeText(getApplicationContext(),ai,Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),ai,Toast.LENGTH_SHORT).show();
         //플레그먼트 메니저를 이용해 플레그먼트 변환
         manager = getSupportFragmentManager();
         af = new AllFragment();

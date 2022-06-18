@@ -7,6 +7,7 @@ import static com.example.mobile.StartProgram.adapter;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 
 public class AllFragment extends Fragment {
     View dialogView;
-    AllergyItem item = (AllergyItem)adapter.getItem(7);
+    AllergyItem item = (AllergyItem) adapter.getItem(7);
     boolean flag = item.check;
     int length = 0;
 
@@ -39,23 +40,23 @@ public class AllFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        ArrayList<Button> buttons = new ArrayList<>();
-        ArrayList<TableRow> tableRows = new ArrayList<>();
+        ArrayList<ImageView> buttons = new ArrayList<>();
+        ArrayList<LinearLayout> LLayout = new ArrayList<>();
         String[] array = api.code.split(", ");
-        length = array.length -1 ;
-        array[length] = array[length].substring(0,array[length].length()-2);
+        length = array.length - 1;
+        array[length] = array[length].substring(0, array[length].length() - 2);
 
 
         View fragment = inflater.inflate(R.layout.fragment_all, container, false); //플레그먼트 뷰로 받아오기
 
 
-        WindowManager.LayoutParams pm = new WindowManager.LayoutParams(); //레이아웃파라미터 생성
-        pm.width = WindowManager.LayoutParams.WRAP_CONTENT; //버튼의 너비를 설정(픽셀단위로도 지정가능)
-        pm.height = WindowManager.LayoutParams.WRAP_CONTENT; //버튼의 높이를 설정(픽셀단위로도 지정 가능)
+        LinearLayout.LayoutParams pm = new LinearLayout.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT,WindowManager.LayoutParams.WRAP_CONTENT); //레이아웃파라미터 생성
         pm.gravity = Gravity.CENTER; //버튼의 Gravity를 지정
+        pm.weight = 1f;
+        pm.setMargins(10,10,10,10);
 
         TableLayout layout = fragment.findViewById(R.id.layoutid);
-        dialogView = getLayoutInflater().inflate(R.layout.info,null); //다이어로그 생성
+        dialogView = getLayoutInflater().inflate(R.layout.info, null); //다이어로그 생성
         Dialog mDialog = new Dialog(this.getContext());//바이어로그 샡성
         mDialog.setTitle("상세 정보"); //다이어로그 타이틀 생성
         mDialog.setContentView(dialogView); //다이어로그의 레이아웃 지정
@@ -74,57 +75,73 @@ public class AllFragment extends Fragment {
         ImageView iv = dialogView.findViewById(R.id.imageView);
         TextView tv = dialogView.findViewById(R.id.textView);
 
-        
+        int L_index = -1;
+        int L_count = 1;
+        for (int i = 0; i < array.length; i++) {
+            int index = 0;
+            if (L_count == 1) {
+                LinearLayout LL = new LinearLayout(getContext());
+                LinearLayout.LayoutParams Lpm = new LinearLayout.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT,400); //레이아웃파라미터 생성
+                pm.weight = 1;
+                LL.setLayoutParams(Lpm);
+                LL.setOrientation(LinearLayout.HORIZONTAL);
+                LLayout.add(LL);
+                L_count = 0;
+                L_index = L_index + 1;
+            } else {
+                L_count++;
+            }
 
-        for(int i = 0 ; i<array.length;i++){
-            int index = 0 ;
-            buttons.add(new Button(getContext()));
-            for(int x =0; x<NameArray.length;x++){
-                if(array[i].equals(NameArray[x])){
+            //버튼 생성부분
+            buttons.add(new ImageView(getContext()));
+            for (int x = 0; x < NameArray.length; x++) {
+                if (array[i].equals(NameArray[x])) {
                     index = x;
-
                     break;
                 }
             }
 
             final int in = index;
-            buttons.get(i).setBackgroundResource(imageArray[index]); //버튼 이미지를 지정(int)
+            buttons.get(i).setImageResource(imageArray[index]); //버튼 이미지를 지정(int)
             buttons.get(i).setLayoutParams(pm);
+            buttons.get(i).setScaleType(ImageView.ScaleType.FIT_CENTER);
             buttons.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     tv.setText(NameArray[in]);
                     iv.setImageResource(imageArray[in]);
                     mDialog.show();
-                    Toast.makeText(getContext(),"성공",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), NameArray[in], Toast.LENGTH_SHORT).show();
                 }
             }); //버튼에 OnClickListener를 지정(OnClickListener)
 
-            layout.addView(buttons.get(i)); //지정된 뷰에 셋팅완료된 mButton을 추가
+            LLayout.get(L_index).addView(buttons.get(i)); //지정된 뷰에 셋팅완료된 mButton을 추가
         }
 
+        for(int i =0; i<LLayout.size();i++){
+            layout.addView(LLayout.get(i));
+        }
+        layout.setBackgroundResource(R.drawable.border);
         fragment.invalidate();
 
 
-
         // 생성하지마자 버튼을 활성화 할지 안할지 결정할 코드
-        if(item.check){
+        if (item.check) {
             btstart.setImageResource(android.R.drawable.star_big_on); // 버튼 클릭시 즐겨찾기 버튼 활성화
-        }else{
+        } else {
             btstart.setImageResource(android.R.drawable.star_big_off); //버튼 클릭시 즐겨찾기 버튼 끄기
         }
-
 
 
         // 버튼 클릭시 즐겨찾기 버튼 설정
         btstart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(item.check){
-                    item.check=false;
+                if (item.check) {
+                    item.check = false;
                     btstart.setImageResource(android.R.drawable.star_big_off);
-                }else{
-                    item.check=true;
+                } else {
+                    item.check = true;
                     btstart.setImageResource(android.R.drawable.star_big_on);
                 }
             }
