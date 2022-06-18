@@ -55,7 +55,7 @@ public class AllFragment extends Fragment {
         pm.weight = 1f;
         pm.setMargins(10,10,10,10);
 
-        TableLayout layout = fragment.findViewById(R.id.layoutid);
+        LinearLayout layout = fragment.findViewById(R.id.layoutid);
         dialogView = getLayoutInflater().inflate(R.layout.info, null); //다이어로그 생성
         Dialog mDialog = new Dialog(this.getContext());//바이어로그 샡성
         mDialog.setTitle("상세 정보"); //다이어로그 타이틀 생성
